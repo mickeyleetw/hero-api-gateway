@@ -7,9 +7,9 @@ class HeroConverter {
         return new Models.RetrieveSingleHeroModel(hero.id, hero.name, hero.image);
     }
 
-    static convertSingleHerokuHeroDetailResponseToModel(hero, hero_profile) {
+    static convertSingleHerokuHeroDetailResponseToModel(hero, heroProfile) {
 
-        return new Models.RetrieveSingleHeroDetailModel(hero.id, hero.name, hero.image, hero_profile.str, hero_profile.int, hero_profile.agi, hero_profile.luk);
+        return new Models.RetrieveSingleHeroDetailModel(hero.id, hero.name, hero.image, heroProfile.str, heroProfile.int, heroProfile.agi, heroProfile.luk);
     }
 
     static convertHerokuHeroListResponseToModel(heroes) {
@@ -32,13 +32,13 @@ class HeroConverter {
 export class HeroRepository {
 
     constructor() {
-        this._heroku_adapter = new HerokuAPIAdapter();;
+        this._herokuAdapter = new HerokuAPIAdapter();;
         this._converter = HeroConverter;
     }
 
     async isAuthUser(name, password) {
         try {
-            const response = await this._heroku_adapter.authUser(name, password);
+            const response = await this._herokuAdapter.authUser(name, password);
 
             if (response.status === 200 && response.data === "OK") {
                 return true
@@ -55,8 +55,8 @@ export class HeroRepository {
     async getHeroList() {
 
         try {
-            const heroku_heroes = await this._heroku_adapter.getHeroes();
-            return this._converter.convertHerokuHeroListResponseToModel(heroku_heroes)
+            const herokuHeroes = await this._herokuAdapter.getHeroes();
+            return this._converter.convertHerokuHeroListResponseToModel(herokuHeroes)
         } catch (error) {
             throw error;
         }
@@ -64,8 +64,8 @@ export class HeroRepository {
 
     async getSingleHero(heroId) {
         try {
-            const heroku_hero = await this._heroku_adapter.getSingleHero(heroId);
-            return this._converter.convertSingleHerokuHeroResponseToModel(heroku_hero)
+            const herokuHeroes = await this._herokuAdapter.getSingleHero(heroId);
+            return this._converter.convertSingleHerokuHeroResponseToModel(herokuHeroes)
         } catch (error) {
             throw error;
         }
@@ -74,15 +74,15 @@ export class HeroRepository {
     async getAuthenticatedHeroList() {
 
         try {
-            const heroku_heroes = await this._heroku_adapter.getHeroes();
-            const hero_ids = heroku_heroes.map((hero) => { return hero.id });
-            const hero_detail_map = new Map()
-            for (let i = 0; i < (hero_ids.length); i++) {
-                const heroId = hero_ids[i]
-                const hero_profile = await this._heroku_adapter.getSingleHeroProfile(heroId);
-                await hero_detail_map.set(Number(heroId), hero_profile);
+            const herokuHeroes = await this._herokuAdapter.getHeroes();
+            const heroIds = herokuHeroes.map((hero) => { return hero.id });
+            const heroDetailMap = new Map()
+            for (let i = 0; i < (heroIds.length); i++) {
+                const heroId = heroIds[i]
+                const heroProfile = await this._herokuAdapter.getSingleHeroProfile(heroId);
+                await heroDetailMap.set(Number(heroId), heroProfile);
             }
-            return this._converter.convertHerokuHeroDetailListResponseToModel(heroku_heroes, hero_detail_map)
+            return this._converter.convertHerokuHeroDetailListResponseToModel(herokuHeroes, heroDetailMap)
         } catch (error) {
             throw error;
         }
@@ -91,9 +91,9 @@ export class HeroRepository {
 
     async getAuthenticatedHero(heroId) {
         try {
-            const heroku_hero = await this._heroku_adapter.getSingleHero(heroId);
-            const heroku_hero_profile = await this._heroku_adapter.getSingleHeroProfile(heroId);
-            return this._converter.convertSingleHerokuHeroDetailResponseToModel(heroku_hero, heroku_hero_profile)
+            const herokuHeroes = await this._herokuAdapter.getSingleHero(heroId);
+            const herokuHeroProfile = await this._herokuAdapter.getSingleHeroProfile(heroId);
+            return this._converter.convertSingleHerokuHeroDetailResponseToModel(herokuHeroes, herokuHeroProfile)
         } catch (error) {
             throw error;
         }
