@@ -1,10 +1,10 @@
 export class HerokuAppError {
   msg
   data
-  status_code
-  constructor(msg, data, status_code) {
+  statusCode
+  constructor(msg, data, statusCode) {
     this.msg = msg;
     this.data = data;
-    this.status_code = status_code;
+    this.statusCode = statusCode;
   }
 }

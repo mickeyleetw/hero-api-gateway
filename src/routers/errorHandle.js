@@ -1,10 +1,9 @@
-export class HeroAppError {
-  msg
-  data
-  status_code
-  constructor(msg, data, status_code) {
+class HeroAppError {
+  constructor(msg, data, statusCode) {
     this.msg = msg;
     this.data = data;
-    this.status_code = status_code;
+    this.statusCode = statusCode;
   }
 }
+
+export default HeroAppError;

@@ -37,7 +37,7 @@ describe('Test Heroku Adapter Function', function () {
             expect.fail('Expected HerokuAppError')
         } catch (error) {
             expect(error).to.be.an.instanceof(HerokuAppError);
-            expect(error.status_code).to.equal(200);
+            expect(error.statusCode).to.equal(200);
             expect(error.msg).to.equal(`Heroku ${mockServer.mockHerokuBackendErrorResponse.message}`);
         }
     });

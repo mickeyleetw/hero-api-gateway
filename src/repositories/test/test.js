@@ -1,6 +1,6 @@
 import chai, { expect } from 'chai';
 import chaiSpies from 'chai-spies';
-import { HeroRepository } from '../heros.js';
+import HeroRepository from '../heros.js';
 import { MockHerokuAdapter } from '../../adapters/index.js';
 import * as Models from '../../models/index.js';
 

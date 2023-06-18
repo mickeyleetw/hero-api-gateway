@@ -1,0 +1,19 @@
+{
+    "extends": "airbnb-base",
+    "rules": {
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+                "js": "always"
+            }
+        ],
+        "max-classes-per-file": "off",
+        "no-useless-constructor": "off",
+        "no-underscore-dangle":"off",
+        "no-await-in-loop": "off"
+    },
+    "parserOptions": {
+        "ecmaVersion": 2021
+    }
+}

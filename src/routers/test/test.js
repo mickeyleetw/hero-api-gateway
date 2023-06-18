@@ -1,6 +1,6 @@
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
-import { HeroAppError } from '../errorHandle.js';
+import HeroAppError from '../errorHandle.js';
 import app from '../../../app.js';
 
 chai.use(chaiHttp);
