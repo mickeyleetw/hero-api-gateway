@@ -75,12 +75,12 @@ export class HeroRepository {
 
         try {
             const herokuHeroes = await this._herokuAdapter.getHeroes();
-            const heroIds = herokuHeroes.map((hero) => { return hero.id });
+            const heroIds = herokuHeroes.map((hero) => hero.id);
             const heroDetailMap = new Map()
             for (let i = 0; i < (heroIds.length); i++) {
                 const heroId = heroIds[i]
                 const heroProfile = await this._herokuAdapter.getSingleHeroProfile(heroId);
-                await heroDetailMap.set(Number(heroId), heroProfile);
+                heroDetailMap.set(Number(heroId), heroProfile);
             }
             return this._converter.convertHerokuHeroDetailListResponseToModel(herokuHeroes, heroDetailMap)
         } catch (error) {
@@ -91,8 +91,11 @@ export class HeroRepository {
 
     async getAuthenticatedHero(heroId) {
         try {
-            const herokuHeroes = await this._herokuAdapter.getSingleHero(heroId);
-            const herokuHeroProfile = await this._herokuAdapter.getSingleHeroProfile(heroId);
+            const [herokuHeroes, herokuHeroProfile] = await Promise.all([
+                this._herokuAdapter.getSingleHero(heroId), 
+                this._herokuAdapter.getSingleHeroProfile(heroId)
+            ]);
+
             return this._converter.convertSingleHerokuHeroDetailResponseToModel(herokuHeroes, herokuHeroProfile)
         } catch (error) {
             throw error;

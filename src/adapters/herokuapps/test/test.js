@@ -11,15 +11,15 @@ describe('Test Heroku Adapter Function', function () {
     const mockHerokuAdapter = new HerokuAPIAdapter();
     const mockHeroId = 1;
     const mockErrorHeroId = 2;
-    const mockAuthPayload = { 'name': 'testName', 'password': 'testPassword' }
+    const mockAuthPayload = { 'name': 'testName', 'password': 'testPassword' };
 
     const mockHerosResponse = [
         { 'id': '1', 'name': 'testName01', 'image': 'testImage01' }, { 'id': '2', 'name': 'testName02', 'image': 'testImage02' },
-    ]
+    ];
     const mockSingleHeroResponse = mockHerosResponse[0];
-    const mockSingleHeroProfileResponse = { 'str': 2, 'int': 7, 'agi': 9, 'luk': 7 }
-    const mockAuthResponse = { 'message': 'OK' }
-    const mockHerokuBackendErrorResponse = { 'code': 1000, 'message': 'Backend Error' }
+    const mockSingleHeroProfileResponse = { 'str': 2, 'int': 7, 'agi': 9, 'luk': 7 };
+    const mockAuthResponse = { 'message': 'OK' };
+    const mockHerokuBackendErrorResponse = { 'code': 1000, 'message': 'Backend Error' };
 
     beforeEach(function () {
         nock(`${HEROKU_BASEURL}`).get('/heroes').reply(200, mockHerosResponse);
