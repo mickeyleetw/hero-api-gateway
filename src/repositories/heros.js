@@ -1,5 +1,5 @@
-import { HerokuAPIAdapter } from "../adapters/index.js";
-import * as Models from "../models/index.js";
+import { HerokuAPIAdapter } from '../adapters/index.js';
+import * as Models from '../models/index.js';
 
 class HeroConverter {
 
@@ -32,7 +32,7 @@ class HeroConverter {
 export class HeroRepository {
 
     constructor() {
-        this._herokuAdapter = new HerokuAPIAdapter();;
+        this._herokuAdapter = new HerokuAPIAdapter();
         this._converter = HeroConverter;
     }
 
@@ -40,13 +40,13 @@ export class HeroRepository {
         try {
             const response = await this._herokuAdapter.authUser(name, password);
 
-            if (response.status === 200 && response.data === "OK") {
+            if (response.status === 200 && response.data === 'OK') {
                 return true
             } else {
                 return false
             }
         } catch (error) {
-            console.log("HerokuApp " + error.msg);
+            console.log('HerokuApp ' + error.msg);
             return false
         }
     }

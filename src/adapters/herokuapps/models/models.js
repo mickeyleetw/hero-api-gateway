@@ -21,7 +21,7 @@ export class RetrieveHerokuHeroProfileModel {
     }
 
     static fromJSON(json) {
-        return new RetrieveHerokuHeroProfileModel(json.int, json.str, json.agi, json.luk);
+        return new RetrieveHerokuHeroProfileModel(json.str, json.int, json.agi, json.luk);
     }
 }
 

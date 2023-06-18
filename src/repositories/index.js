@@ -1,2 +1,2 @@
-import { HeroRepository } from "./heros.js";
+import { HeroRepository } from './heros.js';
 export { HeroRepository };
