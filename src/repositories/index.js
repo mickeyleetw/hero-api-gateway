@@ -1,3 +1,3 @@
-import HeroRepository from './heros.js';
+import HeroRepository from './heroes.js';;
 
 export default HeroRepository;

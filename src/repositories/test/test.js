@@ -1,6 +1,6 @@
 import chai, { expect } from 'chai';
 import chaiSpies from 'chai-spies';
-import HeroRepository from '../heros.js';
+import HeroRepository from '../heroes.js';;
 import { MockHerokuAdapter } from '../../adapters/index.js';
 import * as Models from '../../models/index.js';
 
@@ -51,7 +51,7 @@ describe('Test Hero Repository Function', function () {
 
         const detailedHeroList = await mockHeroRepository.getAuthenticatedHeroList();
         expect(getHeroesSpy).to.have.been.called.exactly(1);
-        expect(getSingleHeroProfileSpy).to.have.been.called.exactly(mockServer.mockHerosResponse.length);
+        expect(getSingleHeroProfileSpy).to.have.been.called.exactly(mockServer.mockHeroesResponse.length);
 
         expect(detailedHeroList).to.be.an.instanceof(Models.RetrieveHeroDetailListModel);
         const heroList = detailedHeroList.heroes;

@@ -18,9 +18,9 @@ describe('Test Heroku Adapter Function', function () {
         expect(result).to.be.an('array');
         const resp_data = result[0];
         expect(resp_data).to.be.an.instanceof(Models.RetrieveHerokuHeroModel);
-        expect(resp_data.id).to.equal(mockServer.mockHerosResponse[0].id);
-        expect(resp_data.name).to.equal(mockServer.mockHerosResponse[0].name);
-        expect(resp_data.image).to.equal(mockServer.mockHerosResponse[0].image);
+        expect(resp_data.id).to.equal(mockServer.mockHeroesResponse[0].id);
+        expect(resp_data.name).to.equal(mockServer.mockHeroesResponse[0].name);
+        expect(resp_data.image).to.equal(mockServer.mockHeroesResponse[0].image);
     });
 
     it('Should Return Heroku Single Hero ', async function () {
