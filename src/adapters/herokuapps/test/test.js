@@ -13,7 +13,7 @@ describe('Test Heroku Adapter Function', function () {
 
     afterEach(function () { mockServer.reset(); });
 
-    it('Should Return Heroku Hero List ', async function () {
+    it('Should Return Unauthorized Heroku Hero List', async function () {
         const result = await mockHerokuAdapter.getHeroes();
         expect(result).to.be.an('array');
         const resp_data = result[0];
@@ -23,7 +23,7 @@ describe('Test Heroku Adapter Function', function () {
         expect(resp_data.image).to.equal(mockServer.mockHeroesResponse[0].image);
     });
 
-    it('Should Return Heroku Single Hero ', async function () {
+    it('Should Return Unauthorized Heroku Single Hero', async function () {
         const result = await mockHerokuAdapter.getSingleHero(mockServer.mockHeroId01);
         expect(result).to.be.an.instanceof(Models.RetrieveHerokuHeroModel);
         expect(result.id).to.equal(mockServer.mockSingleHeroResponse.id);
@@ -42,7 +42,7 @@ describe('Test Heroku Adapter Function', function () {
         }
     });
 
-    it('Should Return 200 & Heroku SingleHeroProfile ', async function () {
+    it('Should Return Heroku SingleHeroProfile ', async function () {
         const result = await mockHerokuAdapter.getSingleHeroProfile(mockServer.mockHeroId01);
         expect(result).to.be.an.instanceof(Models.RetrieveHerokuHeroProfileModel);
         expect(result.agi).to.equal(mockServer.mockSingleHeroProfileResponse01.agi);

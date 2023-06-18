@@ -26,7 +26,7 @@ describe('Test Hero Repository Function', function () {
         chai.spy.restore(mockHerokuAPIAdapter, 'authUser');
     });
 
-    it('Should Return Unauthorized Hero List ', async function () {
+    it('Should Return Unauthorized Hero List', async function () {
 
         const getHeroesSpy = chai.spy.on(mockHerokuAPIAdapter, 'getHeroes');
 
@@ -44,7 +44,7 @@ describe('Test Hero Repository Function', function () {
 
     });
 
-    it('Should Return Authorized Single Hero List ', async function () {
+    it('Should Return Authorized Hero List', async function () {
 
         const getHeroesSpy = chai.spy.on(mockHerokuAPIAdapter, 'getHeroes');
         const getSingleHeroProfileSpy = chai.spy.on(mockHerokuAPIAdapter, 'getSingleHeroProfile');
@@ -69,7 +69,7 @@ describe('Test Hero Repository Function', function () {
     });
 
 
-    it('Should Return Unauthorized Single Hero ', async function () {
+    it('Should Return Unauthorized Single Hero', async function () {
 
         const getSingleHeroSpy = chai.spy.on(mockHerokuAPIAdapter, 'getSingleHero');
 
@@ -82,7 +82,7 @@ describe('Test Hero Repository Function', function () {
         expect(singleHero.image).to.equal(mockServer.mockSingleHeroResponse.image);
     });
 
-    it('Should Return Authorized Single Hero ', async function () {
+    it('Should Return Authorized Single Hero', async function () {
 
         const getSingleHeroSpy = chai.spy.on(mockHerokuAPIAdapter, 'getSingleHero');
         const getSingleHeroProfileSpy = chai.spy.on(mockHerokuAPIAdapter, 'getSingleHeroProfile');
