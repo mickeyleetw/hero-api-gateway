@@ -2,12 +2,19 @@ import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import HeroAppError from '../errorHandle.js';
 import app from '../../../app.js';
+import chai, { expect } from 'chai';
+import mockRepository from '../../repositories/test/index.js';
+import * as Models from '../../models/index.js';
 
 chai.use(chaiHttp);
 const should = chai.should();
 
+describe('Test Hero API Server', function () {
 
-describe('Get Unauthorized Hero Request', () => {
+});
+
+
+describe('Get Hero List', () => {
     it('return 200 and unauthorized hero information', (done) => {
         const heroId = 1;
         chai.request(app).get(`/heroes/${heroId}`).end((error, response) => {

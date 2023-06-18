@@ -3,13 +3,13 @@ import chaiSpies from 'chai-spies';
 import HeroRepository from '../heroes.js';;
 import { MockHerokuAdapter } from '../../adapters/index.js';
 import * as Models from '../../models/index.js';
-
 chai.use(chaiSpies);
 
+const mockRepository = new HeroRepository();
 
 describe('Test Hero Repository Function', function () {
 
-    const mockHeroRepository = new HeroRepository();
+    const mockHeroRepository = mockRepository;
     const mockServer = new MockHerokuAdapter();
     const mockHerokuAPIAdapter = mockServer.mockHerokuAdapter
     mockHeroRepository._herokuAdapter = mockHerokuAPIAdapter;
@@ -104,5 +104,23 @@ describe('Test Hero Repository Function', function () {
         expect(profile.luk).to.equal(mockServer.mockSingleHeroProfileResponse01.luk);
     });
 
+    it('Check User has authorization', async function () {
+        const authUserSpy = chai.spy.on(mockHerokuAPIAdapter, 'authUser');
+        const { name, password } = mockServer.mockAuthPayload;
+        const result = await mockHeroRepository.isAuthUser(name, password);
+        expect(authUserSpy).to.have.been.called.exactly(1);
+        expect(result).to.be.true;
+    })
+
+    it('Check User has no authorization', async function () {
+        const authUserSpy = chai.spy.on(mockHerokuAPIAdapter, 'authUser');
+        const [name, password] = ['QQ', 'QQQQQ'];
+        const result = await mockHeroRepository.isAuthUser(name, password);
+        expect(authUserSpy).to.have.been.called.exactly(1);
+        expect(result).to.be.false;
+    })
+
 
 });
+
+export default mockRepository;

@@ -15,7 +15,7 @@ export class MockHerokuAdapter {
     mockSingleHeroResponse = this.mockHeroesResponse[0];
     mockSingleHeroProfileResponse01 = { 'str': 2, 'int': 7, 'agi': 9, 'luk': 7 };
     mockSingleHeroProfileResponse02 = { 'str': 1, 'int': 1, 'agi': 1, 'luk': 0 };
-    mockAuthResponse = { 'message': 'OK' };
+    mockAuthResponse = 'OK';
     mockHerokuBackendErrorResponse = { 'code': 1000, 'message': 'Backend Error' };
 
     init() {

@@ -61,7 +61,6 @@ class HeroRepository {
       }
       return false;
     } catch (error) {
-      console.log(`HerokuApp ${error.msg}`);
       return false;
     }
   }
