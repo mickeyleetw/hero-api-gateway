@@ -6,21 +6,21 @@ import HeroAppError from './errorHandle.js';
 const router = Router();
 const heroRepository = new HeroRepository();
 
-router.get('/heroes', async (req, res) => {
+export const getHeroListHandler = (heroRepo) => async (req, res) => {
   try {
     const { name, password } = req.headers;
     if (!name || !password) {
-      const heroListResponse = await heroRepository.getHeroList();
+      const heroListResponse = await heroRepo.getHeroList();
       res.json(heroListResponse);
       return;
     }
-    const isAuth = await heroRepository.isAuthUser(name, password);
+    const isAuth = await heroRepo.isAuthUser(name, password);
     if (!isAuth) {
       const heroError = new HeroAppError('User Unauthorized', '', 401);
       res.status(401).json(heroError);
       return;
     }
-    const heroDetailListResponse = await heroRepository.getAuthenticatedHeroList();
+    const heroDetailListResponse = await heroRepo.getAuthenticatedHeroList();
     res.json(heroDetailListResponse);
     return;
   } catch (error) {
@@ -31,25 +31,25 @@ router.get('/heroes', async (req, res) => {
       res.status(heroError.statusCode).json(heroError);
     }
   }
-});
+};
+router.get('/heroes', getHeroListHandler(heroRepository));
 
-router.get('/heroes/:heroId', async (req, res) => {
+export const getSingleHeroHandler = (heroRepo) => async (req, res) => {
   const { heroId } = req.params;
-
   try {
     const { name, password } = req.headers;
     if (!name || !password) {
-      const heroResponse = await heroRepository.getSingleHero(heroId);
+      const heroResponse = await heroRepo.getSingleHero(heroId);
       res.json(heroResponse);
       return;
     }
-    const isAuth = await heroRepository.isAuthUser(name, password);
+    const isAuth = await heroRepo.isAuthUser(name, password);
     if (!isAuth) {
       const heroError = new HeroAppError('User Unauthorized', '', 401);
       res.status(401).json(heroError);
       return;
     }
-    const heroDetailResponse = await heroRepository.getAuthenticatedSingleHero(heroId);
+    const heroDetailResponse = await heroRepo.getAuthenticatedSingleHero(heroId);
     res.json(heroDetailResponse);
     return;
   } catch (error) {
@@ -60,6 +60,6 @@ router.get('/heroes/:heroId', async (req, res) => {
       res.status(heroError.statusCode).json(heroError);
     }
   }
-});
-
+};
+router.get('/heroes/:heroId', getSingleHeroHandler(heroRepository));
 export default router;

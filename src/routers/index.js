@@ -1,3 +1,3 @@
-import router from './hero.js';
+import router, { getHeroListHandler, getSingleHeroHandler } from './hero.js';
 
-export default router;
+export { router, getHeroListHandler, getSingleHeroHandler };
