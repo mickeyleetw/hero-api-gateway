@@ -5,11 +5,10 @@ import { MockHerokuAdapter } from '../../adapters/index.js';
 import * as Models from '../../models/index.js';
 chai.use(chaiSpies);
 
-const mockRepository = new HeroRepository();
 
 describe('Test Hero Repository Function', () => {
 
-    const mockHeroRepository = mockRepository;
+    const mockHeroRepository = new HeroRepository();
     const mockServer = new MockHerokuAdapter();
     const mockHerokuAPIAdapter = mockServer.mockHerokuAdapter;
     mockHeroRepository._herokuAdapter = mockHerokuAPIAdapter;
@@ -117,5 +116,3 @@ describe('Test Hero Repository Function', () => {
 
 
 });
-
-export default mockRepository;

@@ -53,8 +53,6 @@ router.get('/heroes/:heroId', async (req, res) => {
             const heroDetailResponse = await heroRepository.getAuthenticatedSingleHero(heroId);
             res.json(heroDetailResponse);
             return;
-
-
         }
     } catch (error) {
         if (error instanceof HerokuAppError) {
