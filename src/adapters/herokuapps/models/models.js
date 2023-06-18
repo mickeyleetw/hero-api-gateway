@@ -1,5 +1,6 @@
 export class RetrieveHerokuHeroModel {
     constructor(id, name, image) {
+        
         this.id = id;
         this.name = name;
         this.image = image;
@@ -11,6 +12,7 @@ export class RetrieveHerokuHeroModel {
 }
 
 export class RetrieveHerokuHeroProfileModel {
+
     constructor(str, int, agi, luk) {
         this.int = int;
         this.str = str;
@@ -21,4 +23,13 @@ export class RetrieveHerokuHeroProfileModel {
     static fromJSON(json) {
         return new RetrieveHerokuHeroProfileModel(json.int, json.str, json.agi, json.luk);
     }
+}
+
+export class CreateHerokuUserAuthModel {
+
+    constructor(name, password) {
+        this.name = name;
+        this.password = password;
+    }
+
 }

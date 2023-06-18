@@ -1,9 +1,5 @@
 class _HeroModel {
 
-    id
-    name
-    image
-
     constructor(id, name, image) {
         this.id = id;
         this.name = name;
@@ -12,11 +8,6 @@ class _HeroModel {
 }
 
 class _HeroProfileModel {
-
-    str
-    int
-    agi
-    luk
 
     constructor(str, int, agi, luk) {
         this.int = int;
@@ -28,19 +19,15 @@ class _HeroProfileModel {
 
 export class RetrieveHeroListModel {
 
-    heroes
-
     constructor(heroes) {
         this.heroes = heroes;
     }
 }
 
-export class RetrieveHeroDetailListModel {
-
-    heroes
-
+export class RetrieveHeroDetailListModel extends RetrieveHeroListModel{
+    
     constructor(heroes) {
-        this.heroes = heroes;
+        super(heroes);
     }
 }
 
@@ -51,8 +38,6 @@ export class RetrieveSingleHeroModel extends _HeroModel {
 }
 
 export class RetrieveSingleHeroDetailModel extends _HeroModel {
-
-    profile
 
     constructor(id, name, image, str, int, agi, luk) {
         super(id, name, image);

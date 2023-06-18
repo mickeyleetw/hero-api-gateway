@@ -12,7 +12,7 @@ export class HerokuAPIAdapter {
             const resp = await axios.get(HEROKU_BASEURL + "/heroes");
             if (resp.status == 200 && resp.data.code == 1000) {
                 throw new HerokuAppError(
-                    resp.data.message,
+                    "Heroku " + resp.data.message,
                     "",
                     200,
                 );
@@ -38,7 +38,7 @@ export class HerokuAPIAdapter {
             const resp = await axios.get(HEROKU_BASEURL + `/heroes/${heroId}`);
             if (resp.status == 200 && resp.data.code == 1000) {
                 throw new HerokuAppError(
-                    resp.data.message,
+                    "Heroku " + resp.data.message,
                     "",
                     200,
                 );
@@ -64,7 +64,7 @@ export class HerokuAPIAdapter {
             const resp = await axios.get(HEROKU_BASEURL + `/heroes/${heroId}/profile`);
             if (resp.status == 200 && resp.data.code == 1000) {
                 throw new HerokuAppError(
-                    resp.data.message,
+                    "Heroku " + resp.data.message,
                     "",
                     200,
                 );
@@ -86,14 +86,13 @@ export class HerokuAPIAdapter {
     }
 
     async authUser(username, password) {
+
+        const authData = new Models.CreateHerokuUserAuthModel(username, password);
         try {
-            const resp = await axios.post(HEROKU_BASEURL + "/auth", {
-                "name": username,
-                "password": password,
-            });
+            const resp = await axios.post(HEROKU_BASEURL + "/auth", authData);
             if (resp.status == 200 && resp.data.code == 1000) {
                 throw new HerokuAppError(
-                    resp.data.message,
+                    "Heroku " + resp.data.message,
                     "",
                     200,
                 );
