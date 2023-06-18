@@ -5,7 +5,6 @@ import { HerokuAppError } from '../../adapters/index.js';
 import HeroRepository from '../../repositories/index.js';
 import app from '../../../app.js';
 import * as Models from '../../models/index.js';
-import e from 'express';
 
 chai.use(chaiHttp);
 const should = chai.should();
