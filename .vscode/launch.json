@@ -16,13 +16,9 @@
       "request": "launch",
       "name": "Testing",
       "runtimeVersion": "16",
-      "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
-      "args": [
-        // "${workspaceFolder}/src/repositories/test/test.js"
-        // "${workspaceFolder}/src/adapters/herokuapps/test/test.js"
-        "${workspaceFolder}/src/routers/test/test.js"
-      ],
-      // "program": "${workspaceFolder}/src/routers/test/test.js"
+      "runtimeExecutable":"npm",
+      "runtimeArgs":["run", "test"],
+      "program": "${workspaceFolder}/app.js"
     }
   ]
 }
