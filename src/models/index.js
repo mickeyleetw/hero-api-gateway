@@ -1,2 +1,2 @@
-import { RetrieveSingleHeroModel, RetrieveSingleHeroDetailModel, RetrieveHeroDetailListModel, RetrieveHeroListModel } from './models.js';
-export { RetrieveSingleHeroModel, RetrieveSingleHeroDetailModel, RetrieveHeroDetailListModel, RetrieveHeroListModel }
+import { RetrieveSingleHeroModel, RetrieveSingleHeroDetailModel, RetrieveHeroDetailListModel, RetrieveHeroListModel, HeroProfileModel } from './models.js';
+export { RetrieveSingleHeroModel, RetrieveSingleHeroDetailModel, RetrieveHeroDetailListModel, RetrieveHeroListModel, HeroProfileModel }

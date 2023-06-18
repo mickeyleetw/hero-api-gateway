@@ -89,7 +89,7 @@ export class HeroRepository {
 
     }
 
-    async getAuthenticatedHero(heroId) {
+    async getAuthenticatedSingleHero(heroId) {
         try {
             const [herokuHeroes, herokuHeroProfile] = await Promise.all([
                 this._herokuAdapter.getSingleHero(heroId), 

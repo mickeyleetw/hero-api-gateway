@@ -7,7 +7,7 @@ class _HeroModel {
     }
 }
 
-class _HeroProfileModel {
+export class HeroProfileModel {
 
     constructor(str, int, agi, luk) {
         this.int = int;
@@ -41,6 +41,6 @@ export class RetrieveSingleHeroDetailModel extends _HeroModel {
 
     constructor(id, name, image, str, int, agi, luk) {
         super(id, name, image);
-        this.profile = new _HeroProfileModel(str, int, agi, luk);
+        this.profile = new HeroProfileModel(str, int, agi, luk);
     }
 }

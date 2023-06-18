@@ -68,7 +68,7 @@ router.get('/heroes/:heroId', async (req, res) => {
         const isAuth = await heroRepository.isAuthUser(name, password);
         if (isAuth) {
             try {
-                const heroDetailResponse = await heroRepository.getAuthenticatedHero(heroId);
+                const heroDetailResponse = await heroRepository.getAuthenticatedSingleHero(heroId);
                 res.json(heroDetailResponse);
                 return;
             } catch (error) {

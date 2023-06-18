@@ -13,7 +13,7 @@ describe('Test Heroku Adapter Function', function () {
 
     afterEach(function () { mockServer.reset(); });
 
-    it('Should Return 200 & Heroku HeroList ', async function () {
+    it('Should Return Heroku Hero List ', async function () {
         const result = await mockHerokuAdapter.getHeroes();
         expect(result).to.be.an('array');
         const resp_data = result[0];
@@ -23,8 +23,8 @@ describe('Test Heroku Adapter Function', function () {
         expect(resp_data.image).to.equal(mockServer.mockHerosResponse[0].image);
     });
 
-    it('Should Return 200 & Heroku SingleHero ', async function () {
-        const result = await mockHerokuAdapter.getSingleHero(mockServer.mockHeroId);
+    it('Should Return Heroku Single Hero ', async function () {
+        const result = await mockHerokuAdapter.getSingleHero(mockServer.mockHeroId01);
         expect(result).to.be.an.instanceof(Models.RetrieveHerokuHeroModel);
         expect(result.id).to.equal(mockServer.mockSingleHeroResponse.id);
         expect(result.name).to.equal(mockServer.mockSingleHeroResponse.name);
@@ -43,12 +43,12 @@ describe('Test Heroku Adapter Function', function () {
     });
 
     it('Should Return 200 & Heroku SingleHeroProfile ', async function () {
-        const result = await mockHerokuAdapter.getSingleHeroProfile(mockServer.mockHeroId);
+        const result = await mockHerokuAdapter.getSingleHeroProfile(mockServer.mockHeroId01);
         expect(result).to.be.an.instanceof(Models.RetrieveHerokuHeroProfileModel);
-        expect(result.agi).to.equal(mockServer.mockSingleHeroProfileResponse.agi);
-        expect(result.int).to.equal(mockServer.mockSingleHeroProfileResponse.int);
-        expect(result.luk).to.equal(mockServer.mockSingleHeroProfileResponse.luk);
-        expect(result.str).to.equal(mockServer.mockSingleHeroProfileResponse.str);
+        expect(result.agi).to.equal(mockServer.mockSingleHeroProfileResponse01.agi);
+        expect(result.int).to.equal(mockServer.mockSingleHeroProfileResponse01.int);
+        expect(result.luk).to.equal(mockServer.mockSingleHeroProfileResponse01.luk);
+        expect(result.str).to.equal(mockServer.mockSingleHeroProfileResponse01.str);
     });
 
     it('Should Return 200 & if authorized ', async function () {

@@ -18,6 +18,7 @@
       "runtimeVersion": "16",
       "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
       "args": [
+        // "${workspaceFolder}/src/repositories/test/test.js"
         "${workspaceFolder}/src/adapters/herokuapps/test/test.js"
       ],
       // "program": "${workspaceFolder}/src/routers/test/test.js"
