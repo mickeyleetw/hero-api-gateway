@@ -9,7 +9,7 @@ export class HerokuAPIAdapter {
 
     async getHeroes() {
         try {
-            const resp = await axios.get(HEROKU_BASEURL + '/heroes');
+            const resp = await axios.get(`${HEROKU_BASEURL}/heroes`);
             if (resp.status == 200 && resp.data.code == 1000) {
                 throw new HerokuAppError(
                     'Heroku ' + resp.data.message,
@@ -35,7 +35,7 @@ export class HerokuAPIAdapter {
 
     async getSingleHero(heroId) {
         try {
-            const resp = await axios.get(HEROKU_BASEURL + `/heroes/${heroId}`);
+            const resp = await axios.get(`${HEROKU_BASEURL}/heroes/${heroId}`);
             if (resp.status == 200 && resp.data.code == 1000) {
                 throw new HerokuAppError(
                     'Heroku ' + resp.data.message,
@@ -61,7 +61,7 @@ export class HerokuAPIAdapter {
 
     async getSingleHeroProfile(heroId) {
         try {
-            const resp = await axios.get(HEROKU_BASEURL + `/heroes/${heroId}/profile`);
+            const resp = await axios.get(`${HEROKU_BASEURL}/heroes/${heroId}/profile`);
             if (resp.status == 200 && resp.data.code == 1000) {
                 throw new HerokuAppError(
                     'Heroku ' + resp.data.message,
@@ -89,7 +89,7 @@ export class HerokuAPIAdapter {
 
         const authData = new Models.CreateHerokuUserAuthModel(username, password);
         try {
-            const resp = await axios.post(HEROKU_BASEURL + '/auth', authData);
+            const resp = await axios.post(`${HEROKU_BASEURL}/auth`, authData);
             if (resp.status == 200 && resp.data.code == 1000) {
                 throw new HerokuAppError(
                     'Heroku ' + resp.data.message,
