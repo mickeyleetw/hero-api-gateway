@@ -54,48 +54,48 @@ export class HeroRepository {
 
     async getHeroList() {
 
-    try {
-        const heroku_heroes = await this._heroku_adapter.getHeroes();
-        return this._converter.convertHerokuHeroListResponseToModel(heroku_heroes)
-    } catch (error) {
-        throw error;
+        try {
+            const heroku_heroes = await this._heroku_adapter.getHeroes();
+            return this._converter.convertHerokuHeroListResponseToModel(heroku_heroes)
+        } catch (error) {
+            throw error;
+        }
     }
-}
 
     async getSingleHero(heroId) {
-    try {
-        const heroku_hero = await this._heroku_adapter.getSingleHero(heroId);
-        return this._converter.convertSingleHerokuHeroResponseToModel(heroku_hero)
-    } catch (error) {
-        throw error;
+        try {
+            const heroku_hero = await this._heroku_adapter.getSingleHero(heroId);
+            return this._converter.convertSingleHerokuHeroResponseToModel(heroku_hero)
+        } catch (error) {
+            throw error;
+        }
     }
-}
 
     async getAuthenticatedHeroList() {
 
-    try {
-        const heroku_heroes = await this._heroku_adapter.getHeroes();
-        const hero_ids = heroku_heroes.map((hero) => { return hero.id });
-        const hero_detail_map = new Map()
-        for (let i = 0; i < (hero_ids.length); i++) {
-            const heroId = hero_ids[i]
-            const hero_profile = await this._heroku_adapter.getSingleHeroProfile(heroId);
-            await hero_detail_map.set(Number(heroId), hero_profile);
+        try {
+            const heroku_heroes = await this._heroku_adapter.getHeroes();
+            const hero_ids = heroku_heroes.map((hero) => { return hero.id });
+            const hero_detail_map = new Map()
+            for (let i = 0; i < (hero_ids.length); i++) {
+                const heroId = hero_ids[i]
+                const hero_profile = await this._heroku_adapter.getSingleHeroProfile(heroId);
+                await hero_detail_map.set(Number(heroId), hero_profile);
+            }
+            return this._converter.convertHerokuHeroDetailListResponseToModel(heroku_heroes, hero_detail_map)
+        } catch (error) {
+            throw error;
         }
-        return this._converter.convertHerokuHeroDetailListResponseToModel(heroku_heroes, hero_detail_map)
-    } catch (error) {
-        throw error;
-    }
 
-}
+    }
 
     async getAuthenticatedHero(heroId) {
-    try {
-        const heroku_hero = await this._heroku_adapter.getSingleHero(heroId);
-        const heroku_hero_profile = await this._heroku_adapter.getSingleHeroProfile(heroId);
-        return this._converter.convertSingleHerokuHeroDetailResponseToModel(heroku_hero, heroku_hero_profile)
-    } catch (error) {
-        throw error;
+        try {
+            const heroku_hero = await this._heroku_adapter.getSingleHero(heroId);
+            const heroku_hero_profile = await this._heroku_adapter.getSingleHeroProfile(heroId);
+            return this._converter.convertSingleHerokuHeroDetailResponseToModel(heroku_hero, heroku_hero_profile)
+        } catch (error) {
+            throw error;
+        }
     }
-}
 }

@@ -17,7 +17,7 @@ router.get("/heroes", async (req, res) => {
             if (error instanceof HerokuAppError) {
                 res.status(error.status_code).json(error)
             } else {
-                const heroError=new HeroAppError("Internal Server Error", "", 500)
+                const heroError = new HeroAppError("Internal Server Error", "", 500)
                 res.status(500).json(heroError)
             }
         }
@@ -26,7 +26,7 @@ router.get("/heroes", async (req, res) => {
 
         const isAuth = await heroRepository.isAuthUser(name, password);
         if (isAuth) {
-            try{
+            try {
                 const heroDetailListResponse = await heroRepository.getAuthenticatedHeroList();
                 res.json(heroDetailListResponse);
                 return;
@@ -34,12 +34,12 @@ router.get("/heroes", async (req, res) => {
                 if (error instanceof HerokuAppError) {
                     res.status(error.status_code).json(error)
                 } else {
-                    const heroError=new HeroAppError("Internal Server Error", "", 500)
+                    const heroError = new HeroAppError("Internal Server Error", "", 500)
                     res.status(500).json(heroError)
                 }
             }
         } else {
-            const heroError=new HeroAppError("User Unauthorized", "", 401)
+            const heroError = new HeroAppError("User Unauthorized", "", 401)
             res.status(401).json(heroError);
         }
     }
@@ -55,11 +55,11 @@ router.get("/heroes/:heroId", async (req, res) => {
             const heroResponse = await heroRepository.getSingleHero(heroId);
             res.json(heroResponse);
             return;
-        }  catch (error) {
+        } catch (error) {
             if (error instanceof HerokuAppError) {
                 res.status(error.status_code).json(error)
             } else {
-                const heroError=new HeroAppError("Internal Server Error", "", 500)
+                const heroError = new HeroAppError("Internal Server Error", "", 500)
                 res.status(500).json(heroError)
             }
         }
@@ -75,12 +75,12 @@ router.get("/heroes/:heroId", async (req, res) => {
                 if (error instanceof HerokuAppError) {
                     res.status(error.status_code).json(error)
                 } else {
-                    const heroError=new HeroAppError("Internal Server Error", "", 500)
+                    const heroError = new HeroAppError("Internal Server Error", "", 500)
                     res.status(500).json(heroError)
                 }
             }
         } else {
-            const heroError=new HeroAppError("User Unauthorized", "", 401)
+            const heroError = new HeroAppError("User Unauthorized", "", 401)
             res.status(401).json(heroError);
         }
     }
