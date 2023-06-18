@@ -1,4 +1,4 @@
-export class HerokuAppError {
+export class HerokuAppError extends Error{
     msg
     data
     statusCode

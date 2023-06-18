@@ -1,4 +1,4 @@
-class HeroAppError {
+class HeroAppError extends Error{
   constructor(msg, data, statusCode) {
     this.msg = msg;
     this.data = data;
