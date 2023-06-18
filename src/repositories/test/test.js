@@ -1,24 +1,24 @@
 import chai, { expect } from 'chai';
 import chaiSpies from 'chai-spies';
-import HeroRepository from '../heroes.js';;
+import HeroRepository from '../hero.js';;
 import { MockHerokuAdapter } from '../../adapters/index.js';
 import * as Models from '../../models/index.js';
 chai.use(chaiSpies);
 
 const mockRepository = new HeroRepository();
 
-describe('Test Hero Repository Function', function () {
+describe('Test Hero Repository Function', () => {
 
     const mockHeroRepository = mockRepository;
     const mockServer = new MockHerokuAdapter();
-    const mockHerokuAPIAdapter = mockServer.mockHerokuAdapter
+    const mockHerokuAPIAdapter = mockServer.mockHerokuAdapter;
     mockHeroRepository._herokuAdapter = mockHerokuAPIAdapter;
 
-    beforeEach(function () {
+    beforeEach(() => {
         mockServer.init();
-    })
+    });
 
-    afterEach(function () {
+    afterEach(() => {
         mockServer.reset();
         chai.spy.restore(mockHerokuAPIAdapter, 'getHeroes');
         chai.spy.restore(mockHerokuAPIAdapter, 'getSingleHero');
@@ -26,8 +26,7 @@ describe('Test Hero Repository Function', function () {
         chai.spy.restore(mockHerokuAPIAdapter, 'authUser');
     });
 
-    it('Should Return Unauthorized Hero List', async function () {
-
+    it('Should Return Unauthorized Hero List ', async () => {
         const getHeroesSpy = chai.spy.on(mockHerokuAPIAdapter, 'getHeroes');
 
         const result = await mockHeroRepository.getHeroList();
@@ -41,11 +40,10 @@ describe('Test Hero Repository Function', function () {
         expect(singleHero.id).to.equal(mockServer.mockSingleHeroResponse.id);
         expect(singleHero.name).to.equal(mockServer.mockSingleHeroResponse.name);
         expect(singleHero.image).to.equal(mockServer.mockSingleHeroResponse.image);
-
     });
 
-    it('Should Return Authorized Hero List', async function () {
 
+    it('Should Return Authorized Hero List', async () => {
         const getHeroesSpy = chai.spy.on(mockHerokuAPIAdapter, 'getHeroes');
         const getSingleHeroProfileSpy = chai.spy.on(mockHerokuAPIAdapter, 'getSingleHeroProfile');
 
@@ -60,7 +58,7 @@ describe('Test Hero Repository Function', function () {
         expect(detailedSingleHero.id).to.equal(mockServer.mockSingleHeroResponse.id);
         expect(detailedSingleHero.name).to.equal(mockServer.mockSingleHeroResponse.name);
         expect(detailedSingleHero.image).to.equal(mockServer.mockSingleHeroResponse.image);
-        const profile = detailedSingleHero.profile;
+        const { profile } = detailedSingleHero;
         expect(profile).to.be.an.instanceof(Models.HeroProfileModel);
         expect(profile.str).to.equal(mockServer.mockSingleHeroProfileResponse01.str);
         expect(profile.int).to.equal(mockServer.mockSingleHeroProfileResponse01.int);
@@ -68,9 +66,7 @@ describe('Test Hero Repository Function', function () {
         expect(profile.luk).to.equal(mockServer.mockSingleHeroProfileResponse01.luk);
     });
 
-
-    it('Should Return Unauthorized Single Hero', async function () {
-
+    it('Should Return Unauthorized Single Hero', async () => {
         const getSingleHeroSpy = chai.spy.on(mockHerokuAPIAdapter, 'getSingleHero');
 
         const singleHero = await mockHeroRepository.getSingleHero(mockServer.mockHeroId01);
@@ -82,8 +78,7 @@ describe('Test Hero Repository Function', function () {
         expect(singleHero.image).to.equal(mockServer.mockSingleHeroResponse.image);
     });
 
-    it('Should Return Authorized Single Hero', async function () {
-
+    it('Should Return Authorized Single Hero', async () => {
         const getSingleHeroSpy = chai.spy.on(mockHerokuAPIAdapter, 'getSingleHero');
         const getSingleHeroProfileSpy = chai.spy.on(mockHerokuAPIAdapter, 'getSingleHeroProfile');
 
@@ -96,7 +91,7 @@ describe('Test Hero Repository Function', function () {
         expect(detailedSingleHero.name).to.equal(mockServer.mockSingleHeroResponse.name);
         expect(detailedSingleHero.image).to.equal(mockServer.mockSingleHeroResponse.image);
 
-        const profile = detailedSingleHero.profile;
+        const { profile } = detailedSingleHero;
         expect(profile).to.be.an.instanceof(Models.HeroProfileModel);
         expect(profile.str).to.equal(mockServer.mockSingleHeroProfileResponse01.str);
         expect(profile.int).to.equal(mockServer.mockSingleHeroProfileResponse01.int);

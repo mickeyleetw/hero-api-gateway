@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "test": "mocha src/routers/test/test.js",
+    "test": "mocha src/routers/test/test.js --exit",
     "lint": "eslint --ext src/**/*.js --fix"
   },
   "keywords": [],

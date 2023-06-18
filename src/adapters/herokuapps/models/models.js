@@ -1,6 +1,5 @@
 export class RetrieveHerokuHeroModel {
     constructor(id, name, image) {
-        
         this.id = id;
         this.name = name;
         this.image = image;
@@ -12,7 +11,6 @@ export class RetrieveHerokuHeroModel {
 }
 
 export class RetrieveHerokuHeroProfileModel {
-
     constructor(str, int, agi, luk) {
         this.int = int;
         this.str = str;
@@ -26,10 +24,8 @@ export class RetrieveHerokuHeroProfileModel {
 }
 
 export class CreateHerokuUserAuthModel {
-
     constructor(name, password) {
         this.name = name;
         this.password = password;
     }
-
 }

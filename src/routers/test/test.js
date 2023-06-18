@@ -2,7 +2,7 @@ import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import HeroAppError from '../errorHandle.js';
 import app from '../../../app.js';
-import chai, { expect } from 'chai';
+// import chai, { expect } from 'chai';
 import mockRepository from '../../repositories/test/index.js';
 import * as Models from '../../models/index.js';
 

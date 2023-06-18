@@ -4,15 +4,13 @@ import { HEROKU_BASEURL } from '../../config.js';
 import * as Models from './models/index.js';
 import { HerokuAppError } from './errorHandle.js';
 
-
 export class HerokuAPIAdapter {
-
     async getHeroes() {
         try {
             const resp = await axios.get(`${HEROKU_BASEURL}/heroes`);
             if (resp.status == 200 && resp.data.code == 1000) {
                 throw new HerokuAppError(
-                    'Heroku ' + resp.data.message,
+                    `Heroku ${resp.data.message}`,
                     '',
                     200,
                 );
@@ -38,7 +36,7 @@ export class HerokuAPIAdapter {
             const resp = await axios.get(`${HEROKU_BASEURL}/heroes/${heroId}`);
             if (resp.status == 200 && resp.data.code == 1000) {
                 throw new HerokuAppError(
-                    'Heroku ' + resp.data.message,
+                    `Heroku ${resp.data.message}`,
                     '',
                     200,
                 );
@@ -64,7 +62,7 @@ export class HerokuAPIAdapter {
             const resp = await axios.get(`${HEROKU_BASEURL}/heroes/${heroId}/profile`);
             if (resp.status == 200 && resp.data.code == 1000) {
                 throw new HerokuAppError(
-                    'Heroku ' + resp.data.message,
+                    `Heroku ${resp.data.message}`,
                     '',
                     200,
                 );
@@ -86,18 +84,17 @@ export class HerokuAPIAdapter {
     }
 
     async authUser(username, password) {
-
         const authData = new Models.CreateHerokuUserAuthModel(username, password);
         try {
             const resp = await axios.post(`${HEROKU_BASEURL}/auth`, authData);
             if (resp.status == 200 && resp.data.code == 1000) {
                 throw new HerokuAppError(
-                    'Heroku ' + resp.data.message,
+                    `Heroku ${resp.data.message}`,
                     '',
                     200,
                 );
             }
-            return resp
+            return resp;
         } catch (error) {
             if (error instanceof AxiosError) {
                 const herokuError = new HerokuAppError(
@@ -112,3 +109,5 @@ export class HerokuAPIAdapter {
         }
     }
 }
+
+export default HerokuAPIAdapter;

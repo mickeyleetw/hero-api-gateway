@@ -1,2 +1,2 @@
-import mockRepository from "./test";
+import mockRepository from "./test.js";
 export default mockRepository;
